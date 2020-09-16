@@ -9,13 +9,16 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon'
 
 function Chat() {
       const [seed, setSeed] = useState("");
+      const [input, setInput] = useState("");
 
       useEffect(()=>{
             setSeed(Math.floor(Math.random() * 5000));
       }, []);
 
-      const sendMessage = () => {
-            
+      const sendMessage = (event) => {
+            event.preventDefault();
+            console.log(input);
+            setInput("");
       }
 
       return (
@@ -65,6 +68,8 @@ function Chat() {
                               <input 
                                     type="text"
                                     placeholder="Type of message"
+                                    value={input}
+                                    onChange={ event => setInput(event.target.value) }
                                     />
                               <button type="submit" onClick={sendMessage} >Send a message</button>
                         </form>
